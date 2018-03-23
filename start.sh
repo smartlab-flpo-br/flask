@@ -18,7 +18,6 @@ if [ -e $FILE ] ; then
 		cd /app
 		find ./ -type f -name '*.py' | xargs pylint
 		nosetests --traverse-namespace --with-xunit  --exe --py3where .
-		exit
 	fi
 
 	if [ "$1" = 'terminal' ] ; then
