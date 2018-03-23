@@ -17,7 +17,7 @@ if [ -e $FILE ] ; then
 		echo TEST mode
 		cd /app
 		find ./ -type f -name '*.py' | xargs pylint
-		nosetests --traverse-namespace --with-xunit  --exe --py3where .
+		nosetests --traverse-namespace --with-xunit --x-unit-file=/tmp/nosetests.xml --exe --py3where .
 	fi
 
 	if [ "$1" = 'terminal' ] ; then
