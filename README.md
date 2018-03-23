@@ -1,31 +1,20 @@
-# flask
+# SmartLab Flask
 
 Introduction
 ============
 
-Docker com Flask para ambientes de desenvolvimento 
+Flask for SmartLab developers 
 
-Flask + Pandas + pyLint + Nose nas últimas versões. Para usar mapeie o diretório APP do seu código.
+==> Environment for development in Flask in MPT
 
+     > Run app (the main file must be named as main.py)
+       docker run -p 8080:5000 -d -v /path/app:/app
 
-Forma de uso
-------------
-* Executar a aplicação
-$ docker run -d -p 1234:5000 -d -v /caminho_completo/app:/app
-* Executar a aplicação no modo debug
-$ docker run -p 1234:5000 -d -v /caminho_completo/app:/app debug
-* Executar testes de código
-$ docker run -p 1234:5000 -v /caminho_completo/app:/app test
-* Abrir o terminal
-$ docker run -p 1234:5000 -v /caminho_completo/app:/app terminal
+     > Run app in debug mode
+       docker run -p 8080:5000 -d -v /path/app:/app debug
 
-Versões
-=======
+     > Run tools to test code quality
+       docker run -p 8080:5000 -v /path/app:/app test
 
-* TODO: colocar versões
-
-License
-=======
-
-The project is licensed under the GPLv2.
-
+     > Run terminal in containerr
+       docker run -p 8080:5000 -it -v /path/app:/app terminal
