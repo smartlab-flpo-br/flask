@@ -7,7 +7,7 @@ LABEL maintainer="charles.santosd@mpt.mp.br"
 COPY start.sh /start.sh
 COPY requirements.txt /app/requirements.txt
 
-RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates python3 cyrus-sasl-dev && \
+RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates python3 cyrus-sasl-dev libstdc++ && \
     pip3 install --upgrade pip setuptools && \
     pip3 install -r /app/requirements.txt && \
     apk del build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates && \
