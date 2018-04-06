@@ -1,8 +1,5 @@
-# DEV-DATAHUBAPI........: Flask, Pandas, pyLint and Nose
-# Version...............: 0.1
-
 FROM alpine:3.7
-LABEL maintainer="charles.santosd@mpt.mp.br"
+LABEL maintainer="smartlab@mpt.mp.br"
 
 COPY start.sh /start.sh
 COPY requirements.txt /app/requirements.txt
