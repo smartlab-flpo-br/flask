@@ -1,7 +1,6 @@
 FROM alpine:3.7
-LABEL maintainer="smartlab@mpt.mp.br"
+LABEL maintainer="smartlab-dev@mpt.mp.br"
 
-COPY start.sh /start.sh
 COPY requirements.txt /app/requirements.txt
 
 RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates python3 cyrus-sasl-dev libstdc++ && \
@@ -18,7 +17,19 @@ RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev li
 
 ENV LANG C.UTF-8
 ENV PYTHONPATH $PYTHONPATH:/app
+ENV NGINX_MAX_UPLOAD 10m
+ENV LISTEN_PORT 80
+ENV UWSGI_INI /app/uwsgi.ini
+ENV STATIC_URL /static
+ENV STATIC_PATH /app/static
+ENV STATIC_INDEX 1
+ENV DEBUG 0
+ENV FLASK_APP /app/main.py
+
+COPY start.sh /start.sh
+
 USER mpt
 EXPOSE 5000
 WORKDIR /app
+
 ENTRYPOINT ["sh", "/start.sh"]

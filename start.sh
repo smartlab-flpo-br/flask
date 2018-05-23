@@ -3,10 +3,12 @@
 export FLASK_DEBUG=0
 export FLASK_APP=/app/main.py
 
-FILE=/app/main.py
+if [ "$1" = 'compose' ] ; then
+	echo "Docker compose mode... the Flask isn't necessary, killing it."
+       	exit 0
+fi
 
-if [ -e $FILE ] ; then
-
+if [ -e $FLASK_APP ] ; then
 
 	if [ "$1" = 'debug' ] ; then
 		echo DEBUG mode
