@@ -1,15 +1,13 @@
 version: "3"
 services:
 
-  # This service exist only to share the lib folder
-  # It will be died on run
   flask:
     image: smartlab/flask
     volumes:
         - ./app:/app
         - flask-lib:/usr/lib/python3.6/site-packages
-    networks:
-      - backend
+    command: 
+        - compose
 
   uwsgi:
     image: smartlab/uwsgi
