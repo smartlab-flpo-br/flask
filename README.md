@@ -1,8 +1,6 @@
 # Smartlab Flask
 
-Flask for Smartlab developers 
-
-==> Environment for development Flask in MPT
+**Please, use this [docker-composer](https://github.com/smartlab-flpo-br/flask/blob/master/docker-compose.yml) to run the full stack `NGINX > uWSGI > Flask`** 
 
 #### Run app with pure Flask
      docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask
