@@ -27,7 +27,3 @@ services:
 networks:
   frontend:
   backend:
-
-volumes:
-  flask-lib:
-  flask-usr-lib:
