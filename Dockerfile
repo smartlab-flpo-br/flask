@@ -2,7 +2,7 @@ FROM alpine:3.7
 LABEL maintainer="smartlab-dev@mpt.mp.br"
 
 COPY requirements.txt /app/requirements.txt
-COPY uwsgi.py main.py /app/
+COPY app/*.py /app/
 COPY uwsgi.ini /etc/uwsgi/conf.d/
 COPY start.sh /start.sh
 
