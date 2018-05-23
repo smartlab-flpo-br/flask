@@ -32,12 +32,4 @@ else
 	echo -e "\n Erro: File /app/main.py not found!" 
 fi
 
-echo -e "\n ==> Environment for development in Flask in MPT"
-echo -e "\n     > Run app (the main file must be named as main.py)"
-echo -e "       docker run -p 8080:5000 -d -v /path/app:/app"
-echo -e "\n     > Run app in debug mode"
-echo -e "       docker run -p 8080:5000 -d -v /path/app:/app debug"
-echo -e "\n     > Run tools to test code quality"
-echo -e "       docker run -p 8080:5000 -v /path/app:/app test"
-echo -e "\n     > Run terminal in containerr"
-echo -e "       docker run -p 8080:5000 -it -v /path/app:/app terminal \n\n"
+echo -e "\n ==> Read how to use this in https://github.com/smartlab-flpo-br/flask"

@@ -7,7 +7,6 @@ services:
         - .env.development
     volumes:
         - ./app:/app
-        - ./reports:/tmp
     command: 
         - uwsgi
     networks:

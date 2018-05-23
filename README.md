@@ -1,17 +1,22 @@
-# SmartLab Flask
+# Smartlab Flask
 
-Flask for SmartLab developers 
+Flask for Smartlab developers 
 
-==> Environment for development in Flask in MPT
+==> Environment for development Flask in MPT
 
-     > Run app (the main file must be named as main.py)
-       docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask
+#### Run app with pure Flask
+     docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask
 
-     > Run app in debug mode
-       docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask debug
+#### Run app with uWSGI
+     docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask uwsgi
 
-     > Run tools to test code quality
-       docker run -p 8080:5000 -v /path/app:/app smartlab/flask test
+#### Run app in debug mode
+    docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask debug
 
-     > Run terminal in container
-       docker run -p 8080:5000 -it -v /path/app:/app smartlab/flask terminal
+#### Run tools to test code quality
+     docker run -p 8080:5000 -d -v /path/app:/app smartlab/flask test
+
+#### Run terminal to inspect container
+     docker run -p 8080:5000 -it -v /path/app:/app smartlab/flask terminal
+
+**Note:** the main file must be named as `/app/main.py`
