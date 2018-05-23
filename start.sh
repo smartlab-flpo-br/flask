@@ -3,11 +3,6 @@
 export FLASK_DEBUG=0
 export FLASK_APP=/app/main.py
 
-if [ "$1" = 'compose' ] ; then
-	echo "Docker compose mode... the Flask isn't necessary, killing it."
-       	exit 0
-fi
-
 if [ -e $FLASK_APP ] ; then
 
 	if [ "$1" = 'debug' ] ; then
@@ -20,6 +15,11 @@ if [ -e $FLASK_APP ] ; then
 		cd /app
 		find ./ -type f -name '*.py' | xargs pylint
 		nosetests --traverse-namespace --with-xunit --xunit-file=/tmp/nosetests.xml --exe --py3where .
+	fi
+
+	if [ "$1" = 'uwsgi' ] ; then
+		echo uWSGI mode
+        	exec /usr/sbin/uwsgi --ini /etc/uwsgi/uwsgi.ini --die-on-term
 	fi
 
 	if [ "$1" = 'terminal' ] ; then
