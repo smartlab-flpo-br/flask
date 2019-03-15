@@ -11,3 +11,5 @@ impyla == 0.14.1
 kazoo == 2.4.0
 Babel == 2.6.0
 ansicolors == 1.1.8
+requests == 2.21.0
+PyYAML == 3.13
