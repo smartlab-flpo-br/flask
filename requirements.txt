@@ -13,3 +13,4 @@ Babel == 2.6.0
 ansicolors == 1.1.8
 requests == 2.21.0
 PyYAML == 3.13
+happybase == 1.2.0
