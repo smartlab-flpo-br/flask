@@ -6,7 +6,7 @@ COPY app/*.py /app/
 COPY uwsgi.ini /etc/uwsgi/conf.d/
 COPY start.sh /start.sh
 
-RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates python3 cyrus-sasl-dev libstdc++ uwsgi-python3 && \
+RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates python3 cyrus-sasl-dev libstdc++ uwsgi-python3 gfortran openblas-dev && \
     pip3 install --upgrade pip setuptools && \
     pip3 install -r /app/requirements.txt && \
     apk del build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates && \
