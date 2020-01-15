@@ -12,5 +12,3 @@ ansicolors == 1.1.8
 requests == 2.21.0
 PyYAML == 5.1
 happybase == 1.2.0
-cython == 0.29.14
-sklearn == 0.0
