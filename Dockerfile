@@ -1,26 +1,31 @@
-FROM alpine:3.7
+FROM python:3.8-alpine3.11
 LABEL maintainer="smartlab-dev@mpt.mp.br"
+
+ENV PYTHONPATH /app:/usr/lib/python3.8/site-packages
 
 COPY requirements.txt /app/requirements.txt
 COPY app/*.py /app/
 COPY uwsgi.ini /etc/uwsgi/conf.d/
 COPY start.sh /start.sh
 
-RUN apk --update --no-cache add build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates python3 cyrus-sasl-dev libstdc++ uwsgi-python3 gfortran openblas-dev && \
-    pip3 install --upgrade pip setuptools && \
+ENV MPLLOCALFREETYPE 1
+
+WORKDIR /app
+
+RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates&& \
+    apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev libxml2 libxslt-dev libpng-dev uwsgi jpeg-dev zlib-dev && \
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     pip3 install -r /app/requirements.txt && \
-    apk del build-base libffi-dev openssl-dev python3-dev libffi openssl ca-certificates && \
+    apk del build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
     rm -rf /var/cache/apk/* && \
     rm -rf ~/.cache/ && \
     mkdir -p /var/run/flask && \
-    chown -R uwsgi:uwsgi /var/run/flask /app /etc/uwsgi/conf.d 
+    apk --no-cache add uwsgi-python3
 
 ENV LANG C.UTF-8
 ENV DEBUG 0
 ENV FLASK_APP /app/main.py
-ENV PYTHONPATH /app:/usr/lib/python3.6/site-packages
 
 EXPOSE 5000
-WORKDIR /app
 
 ENTRYPOINT ["sh", "/start.sh"]
