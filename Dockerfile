@@ -12,8 +12,8 @@ ENV MPLLOCALFREETYPE 1
 
 WORKDIR /app
 
-RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates&& \
-    apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev libxml2 libxslt-dev libpng-dev uwsgi jpeg-dev zlib-dev && \
+RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
+    apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev uwsgi && \
     ln -s /usr/include/locale.h /usr/include/xlocale.h && \
     pip3 install -r /app/requirements.txt && \
     apk del build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
