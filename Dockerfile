@@ -12,11 +12,12 @@ ENV MPLLOCALFREETYPE 1
 
 WORKDIR /app
 
-RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
-    apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev uwsgi && \
-    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
+# RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates uwsgi && \
+#     apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev uwsgi && \
+RUN apk --update --no-cache add build-base libffi-dev uwsgi && \
     pip3 install -r /app/requirements.txt && \
-    apk del build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
+#    apk del build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
+    apk del build-base libffi-dev && \
     rm -rf /var/cache/apk/* && \
     rm -rf ~/.cache/ && \
     mkdir -p /var/run/flask && \
