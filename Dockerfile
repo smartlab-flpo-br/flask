@@ -1,4 +1,4 @@
-FROM python:3.8-alpine3.11
+FROM python:3.8.2-alpine3.11
 LABEL maintainer="smartlab-dev@mpt.mp.br"
 
 ENV PYTHONPATH /app:/usr/lib/python3.8/site-packages
@@ -12,6 +12,7 @@ ENV MPLLOCALFREETYPE 1
 
 WORKDIR /app
 
+# Moved commented out packages to flask-dataviz
 # RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates uwsgi && \
 #     apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev uwsgi && \
 RUN apk --update --no-cache add build-base libffi-dev uwsgi && \
@@ -20,8 +21,9 @@ RUN apk --update --no-cache add build-base libffi-dev uwsgi && \
     apk del build-base libffi-dev && \
     rm -rf /var/cache/apk/* && \
     rm -rf ~/.cache/ && \
-    mkdir -p /var/run/flask && \
-    apk --no-cache add uwsgi-python3
+    mkdir -p /var/run/flask
+# Removed - seems unnecessary (test without it passed)
+#RUN apk --no-cache add uwsgi-python3
 
 ENV LANG C.UTF-8
 ENV DEBUG 0
