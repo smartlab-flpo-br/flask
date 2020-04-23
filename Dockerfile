@@ -19,7 +19,8 @@ RUN apk --update --no-cache add build-base libffi-dev uwsgi && \
     apk del build-base libffi-dev && \
     rm -rf /var/cache/apk/* && \
     rm -rf ~/.cache/ && \
-    mkdir -p /var/run/flask
+    mkdir -p /var/run/flask && \
+    chown -R uwsgi:uwsgi /var/run/flask /app /etc/uwsgi/conf.d
 # Removed - seems unnecessary (test without it passed)
 #RUN apk --no-cache add uwsgi-python3
 
