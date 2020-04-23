@@ -8,8 +8,6 @@ COPY app/*.py /app/
 COPY uwsgi.ini /etc/uwsgi/conf.d/
 COPY start.sh /start.sh
 
-ENV MPLLOCALFREETYPE 1
-
 WORKDIR /app
 
 # Moved commented out packages to flask-dataviz
