@@ -1,4 +1,4 @@
-FROM python:3.8.2-alpine3.11
+FROM python:3.8.2-slim
 LABEL maintainer="smartlab-dev@mpt.mp.br"
 
 ENV PYTHONPATH /app:/usr/lib/python3.8/site-packages
@@ -11,18 +11,11 @@ COPY start.sh /start.sh
 WORKDIR /app
 
 # Moved commented out packages to flask-dataviz
-# RUN apk --update --no-cache add build-base libffi-dev openssl-dev libffi openssl ca-certificates uwsgi && \
-#     apk --update --no-cache add cyrus-sasl-dev libstdc++ gfortran openblas-dev uwsgi && \
-RUN apk --update --no-cache add build-base libffi-dev uwsgi && \
+RUN apt-get update && \
+    apt-get install -y build-essential uwsgi-plugin-python3 && \
     pip3 install -r /app/requirements.txt && \
-#    apk del build-base libffi-dev openssl-dev libffi openssl ca-certificates && \
-    apk del build-base libffi-dev && \
-    rm -rf /var/cache/apk/* && \
-    rm -rf ~/.cache/ && \
     mkdir -p /var/run/flask && \
-    chown -R uwsgi:uwsgi /var/run/flask /app /etc/uwsgi/conf.d
-# Removed - seems unnecessary (test without it passed)
-#RUN apk --no-cache add uwsgi-python3
+    apt-get clean
 
 ENV LANG C.UTF-8
 ENV DEBUG 0
@@ -30,4 +23,4 @@ ENV FLASK_APP /app/main.py
 
 EXPOSE 5000
 
-ENTRYPOINT ["sh", "/start.sh"]
+ENTRYPOINT ["sh", "/start.sh", "uwsgi"]
