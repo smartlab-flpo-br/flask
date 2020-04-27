@@ -9,7 +9,7 @@ RUN apt-get update && \
     pip3 install -r /app/requirements.txt && \
     mkdir -p /var/run/flask && \
     groupadd -r uwsgi && useradd -r -g uwsgi uwsgi && \
-    chown -R uwsgi:uwsgi /var/run/flask && \
+    chown -R uwsgi:uwsgi /var/run/flask /app /etc/uwsgi && \
     apt-get clean
 
 ENV LANG C.UTF-8
