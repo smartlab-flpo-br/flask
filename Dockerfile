@@ -5,11 +5,12 @@ LABEL maintainer="smartlab-dev@mpt.mp.br"
 COPY requirements.txt /app/requirements.txt
 
 RUN apt-get update && \
-    apt-get install -y build-essential && \
+    apt-get install -y build-essential gcc && \
     pip3 install -r /app/requirements.txt && \
     mkdir -p /var/run/flask && \
     groupadd -r uwsgi && useradd -r -g uwsgi uwsgi && \
     chown -R uwsgi:uwsgi /var/run/flask && \
+    apt-get --purge remove -y gcc && \
     apt-get clean
 
 ENV LANG C.UTF-8
@@ -26,4 +27,4 @@ COPY start.sh /start.sh
 
 WORKDIR /app
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["sh", "/start.sh"]
