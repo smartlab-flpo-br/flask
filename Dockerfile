@@ -5,7 +5,7 @@ LABEL maintainer="smartlab-dev@mpt.mp.br"
 COPY requirements.txt /app/requirements.txt
 
 RUN apt-get update && \
-    apt-get install -y build-essential uwsgi-plugin-python3 && \
+    apt-get install -y build-essential && \
     pip3 install -r /app/requirements.txt && \
     mkdir -p /var/run/flask && \
     groupadd -r uwsgi && useradd -r -g uwsgi uwsgi && \
