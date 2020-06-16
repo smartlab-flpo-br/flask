@@ -23,7 +23,7 @@ USER uwsgi:uwsgi
 
 COPY --chown=uwsgi:uwsgi app/*.py /app/
 COPY --chown=uwsgi:uwsgi uwsgi.ini /etc/uwsgi/conf.d/
-COPY start.sh /start.sh
+COPY --chown=uwsgi:uwsgi start.sh /start.sh
 
 WORKDIR /app
 
