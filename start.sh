@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PATH=$PATH:/usr/lib/uwsgi/plugins/
 export FLASK_DEBUG=0
 export FLASK_APP=/app/main.py
 
