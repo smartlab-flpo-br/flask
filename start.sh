@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PATH=$PATH:/usr/lib/uwsgi/plugins/
 export FLASK_DEBUG=0
 export FLASK_APP=/app/main.py
 
@@ -20,7 +21,7 @@ if [ -e $FLASK_APP ] ; then
 
 	if [ "$1" = 'uwsgi' ] ; then
 		echo uWSGI mode
-        	exec /usr/sbin/uwsgi --ini /etc/uwsgi/uwsgi.ini --die-on-term
+        	exec uwsgi --ini /etc/uwsgi/conf.d/uwsgi.ini --die-on-term
 	fi
 
 	if [ "$1" = 'terminal' ] ; then
