@@ -10,11 +10,12 @@ if [ -e $FLASK_APP ] ; then
         	export FLASK_DEBUG=1
 	fi
 
+    if [ "$1" = 'lint' ] ; then
+        python3 app/test/run_linter.py
+	fi
+
 	if [ "$1" = 'test' ] ; then
-		echo TEST mode
-		cd /app
-		find ./ -type f -name '*.py' | xargs pylint
-		nosetests --traverse-namespace --with-xunit --xunit-file=/tmp/nosetests.xml --exe --py3where .
+        nose2 --config app/test/nose2.cfg --with-cov --coverage-report xml --coverage-config app/test/coverage/.coveragerc > ${INPUT_DEST}/test.txt 2>&1
 	fi
 
 	if [ "$1" = 'uwsgi' ] ; then
@@ -27,7 +28,9 @@ if [ -e $FLASK_APP ] ; then
         	exec /bin/sh
 	fi
 
-	exec flask run --host=0.0.0.0 --port=5000
+    if [ "$1" != 'lint' -a "$1" != 'test' ] ; then
+	    exec flask run --host=0.0.0.0 --port=5000
+    fi
 else
 	echo -e "\n Erro: File /app/main.py not found!" 
 fi
