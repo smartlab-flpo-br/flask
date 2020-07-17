@@ -12,12 +12,12 @@ if [ -e $FLASK_APP ] ; then
 	fi
 
     if [ "$1" = 'lint' ] ; then
-		pip3 install -Iv --user pylint==2.4.4
+		pip3 install -Iv pylint==2.4.4
         python3 app/test/run_linter.py
 	fi
 
 	if [ "$1" = 'test' ] ; then
-		pip3 install -Iv --user nose2==0.9.1
+		pip3 install -Iv nose2==0.9.1
         nose2 --config app/test/nose2.cfg --with-cov --coverage-report xml --coverage-config app/test/coverage/.coveragerc > ${INPUT_DEST}/test.txt 2>&1
 	fi
 
