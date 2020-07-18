@@ -17,8 +17,9 @@ if [ -e $FLASK_APP ] ; then
 	fi
 
 	if [ "$1" = 'test' ] ; then
-		# pip3 install -Iv nose2==0.9.1
 		apt-get install -y python3-nose
+		pip3 install -Iv nose2==0.9.1
+		export PATH=$PATH:/root/bin:/root/.local/bin
         nose2 --config app/test/nose2.cfg --with-cov --coverage-report xml --coverage-config app/test/coverage/.coveragerc > ${INPUT_DEST}/test.txt 2>&1
 	fi
 
