@@ -6,7 +6,7 @@ kazoo==2.5.0
 Babel==2.6.0
 ansicolors==1.1.8
 requests==2.21.0
-PyYAML==5.1
+PyYAML==5.4
 uWSGI==2.0.18
 werkzeug==0.14.1
 multidict==4.7.6
